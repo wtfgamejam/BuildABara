@@ -1,39 +1,3 @@
-<html>
-<head>
-<title>README</title>
-<style>
-BODY {
-	background: #fff;
-	color: #444;
-	padding-left: 20%;
-	padding-top: 1em;
-	padding-bottom: 1em;
-	padding-right: 20%;
-	font-family: sans-serif;
-	line-height: 1.6em;
-}
-
-DT {
-	font-weight: bold;
-	margin-top: .33em;
-}
-
-H2 {
-	color: #000;
-	margin-left: -2.5em;
-}
-
-H3 {
-	color: #000;
-	margin-left: -1.5em;
-}
-
-.editsection {
-	display: none;
-}
-</style>
-</head>
-<body>
 
   <h2>Basic Help</h2>
   <p>
