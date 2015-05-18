@@ -106,6 +106,15 @@ image gary prostheticleg = AlphaMask("gary", "details prostheticleg mask")
 image skin dark prostheticleg = AlphaMask("skin dark", "details prostheticleg mask")
 image skin medium prostheticleg = AlphaMask("skin medium", "details prostheticleg mask")
 image skin pale prostheticleg = AlphaMask("skin pale", "details prostheticleg mask")
+image hair andrew black fedora = AlphaMask("hair andrew black", "head fedora mask")
+image hair andrew blonde fedora = AlphaMask("hair andrew blonde", "head fedora mask")
+image hair andrew brown fedora = AlphaMask("hair andrew brown", "head fedora mask")
+image hair andrew red fedora = AlphaMask("hair andrew red", "head fedora mask")
+image hair locs black fedora = AlphaMask("hair locs black", "head fedora mask")
+image hair locs blonde fedora = AlphaMask("hair locs blonde", "head fedora mask")
+image hair locs brown fedora = AlphaMask("hair locs brown", "head fedora mask")
+image hair locs red fedora = AlphaMask("hair locs red", "head fedora mask")
+
 
 init python:
     def bodymask(img,mask):
@@ -154,7 +163,7 @@ label dressup:
         #jump date
     else:
         call DressGary(*result)
-        call RandomGary
+        #call RandomGary
         jump dressup
 
 
@@ -188,13 +197,17 @@ label RandomGary:
             #renpy.show(baseGary, (halfsize,))
             #renpy.show((imagename), (halfsize,))
         #renpy.notify(currentGary)
-        currentGary['gary'].replace(' prostheticleg','')
+        currentGary['gary'] = currentGary['gary'].replace('prostheticleg','')
+        currentGary['skin'] = currentGary['skin'].replace('prostheticleg','')
+        currentGary['hair'] = currentGary['hair'].replace('fedora','')
+        
         if currentGary['details'] == 'prostheticleg':
-            if not 'prostheticleg' in currentGary['gary']:
-                currentGary['gary'] = currentGary['gary'] + ' prostheticleg'
-                currentGary['skin'] = currentGary['skin'] + ' prostheticleg'
+            currentGary['gary'] = currentGary['gary'] + ' prostheticleg'
+            currentGary['skin'] = currentGary['skin'] + ' prostheticleg'
         if currentGary['head'] == 'fedora':
-            currentGary['hair'] = currentGary['hair'] + ' fedora'
+            if ('andrew' or 'locs') in currentGary['hair']:
+                currentGary['hair'] = currentGary['hair'] + ' fedora'
+        #renpy.notify(currentGary['details'])
     show baseGary at halfsize
     return
 
