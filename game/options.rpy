@@ -96,7 +96,7 @@ init -1 python hide:
     ## are the size of the left/right and top/bottom borders,
     ## respectively.
 
-    # style.window.background = Frame("frame.png", 12, 12)
+    style.window.background = "#fff6"
 
     ## Margin is space surrounding the window, where the background
     ## is not drawn.
@@ -286,3 +286,5 @@ init -1 python hide:
 
     #########################################
     ## More customizations can go here.
+ 
+    config.layers = [ 'master', 'body', 'underclothes', 'overclothes', 'accessories', 'transient', 'screens', 'overlay' ]

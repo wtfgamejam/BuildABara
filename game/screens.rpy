@@ -5,6 +5,53 @@
 # future. The use of **kwargs in the parameter list ensures your code will
 # work in the future.
 
+screen dressup():
+    frame:
+        xalign .02
+        yalign .98
+
+        has hbox
+
+        textbutton _("Unders") action Show("clothing",None,"underthings")
+        textbutton _("Pants") action Show("clothing",None,"pants")
+        
+    use datego
+    on "hide" action Hide("clothing")
+
+screen datego():
+    frame:
+        xalign .98
+        yalign .98
+    
+        textbutton _("Go On Date!") action Return("date")
+
+screen clothing(type):
+
+    $ columns = 3;
+    $ rows = 4;
+    frame:
+        right_margin 0.7
+        bottom_margin 0.1
+        has vbox
+        # Display a grid of clothing items
+        #grid columns rows:
+            #xfill True
+            #style_group "clothing"
+
+            # Display ten clothing articles.
+            #for i in range(1, columns * rows + 1):
+
+            # Each article is a button.
+        imagebutton: 
+            idle "test"
+            hover "test"
+            action Return((type,("boxers",)))
+        imagebutton: 
+            idle "test"
+            hover "test"
+            action Return((type,("jeans",)))
+        
+
 ##############################################################################
 # Say
 #
