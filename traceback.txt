@@ -1,28 +1,24 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 75, in script call
-    call DressGary("pants",("black",))
-  File "game/script.rpy", line 96, in script
-    python:
-  File "game/script.rpy", line 103, in <module>
-    renpy.notify(*imagename + " does not exist!")
-TypeError: can only concatenate tuple (not "str") to tuple
+  File "game/script.rpy", line 162, in script
+    if currentGary[slot] == item:
+  File "game/script.rpy", line 163, in <module>
+    #if Gary is already wearing this item, remove it instead
+KeyError: ''
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 75, in script call
-    call DressGary("pants",("black",))
-  File "game/script.rpy", line 96, in script
-    python:
+  File "game/script.rpy", line 162, in script
+    if currentGary[slot] == item:
   File "/Applications/renpy-6.99.3-sdk/renpy/ast.py", line 785, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
   File "/Applications/renpy-6.99.3-sdk/renpy/python.py", line 1445, in py_exec_bytecode
     exec bytecode in globals, locals
-  File "game/script.rpy", line 103, in <module>
-    renpy.notify(*imagename + " does not exist!")
-TypeError: can only concatenate tuple (not "str") to tuple
+  File "game/script.rpy", line 163, in <module>
+    #if Gary is already wearing this item, remove it instead
+KeyError: ''
 
 Darwin-14.3.0-x86_64-i386-64bit
 Ren'Py 6.99.3.404

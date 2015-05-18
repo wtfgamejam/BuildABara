@@ -29,6 +29,7 @@ init -1 python hide:
     # with tracebacks and other debugging logs.
     config.name = "Build A Bara"
     config.version = "0.0"
+    config.log = "debug.txt"
 
     #########################################
     # Themes

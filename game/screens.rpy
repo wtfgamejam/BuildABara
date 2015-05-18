@@ -9,48 +9,104 @@ screen dressup():
     frame:
         xalign .02
         yalign .98
-
-        has hbox
-
-        textbutton _("Unders") action Show("clothing",None,"underthings")
-        textbutton _("Pants") action Show("clothing",None,"pants")
+        right_margin 0.8
+        
+        $ columns = 3
+        $ rows = 4
+        $ i = 0
+        grid columns rows:
+            for type in clothes:
+                $ i = i+1
+                textbutton _(type):
+                    action Show("clothing",None,type)
+                    xfill True
+                    text_size 12
+                    xmaximum 90
+            for j in range(i, columns * rows):
+                null
+    frame:
+        xalign .98
+        yalign .98
+        left_margin 0.8
+        
+        $ columns = 3
+        $ rows = 4
+        $ i = 0
+        grid columns rows:
+            for type in body:
+                $ i = i+1
+                textbutton _(type):
+                    action Show("body",None,type)
+                    xfill True
+                    text_size 12
+                    xmaximum 90
+            for j in range(i, columns * rows):
+                null
         
     use datego
     on "hide" action Hide("clothing")
 
 screen datego():
     frame:
-        xalign .98
+        xalign 0.5
         yalign .98
     
         textbutton _("Go On Date!") action Return("date")
 
 screen clothing(type):
-
-    $ columns = 3;
+    $ items = clothes[type]
+    $ count = len(clothes[type])
+    $ columns = 2;
     $ rows = 4;
     frame:
         right_margin 0.7
         bottom_margin 0.1
-        has vbox
+
         # Display a grid of clothing items
-        #grid columns rows:
-            #xfill True
-            #style_group "clothing"
+        grid columns rows:
+            xfill True
+            style_group "clothing"
 
             # Display ten clothing articles.
-            #for i in range(1, columns * rows + 1):
+            for i in range(0, columns * rows):
 
-            # Each article is a button.
-        imagebutton: 
-            idle "test"
-            hover "test"
-            action Return((type,("boxers",)))
-        imagebutton: 
-            idle "test"
-            hover "test"
-            action Return((type,("jeans",)))
-        
+                # Each file slot is a button.
+                if i < count:
+                    imagebutton:
+                        idle type + ' ' + items[i] + ' ' +  "thumbs"
+                        hover type + ' ' + items[i] + ' ' +  "thumbs"
+                        action Return((type,items[i]))
+                        xfill True
+                else:
+                    null
+
+screen body(type):
+    $ items = body[type]
+    $ count = len(body[type])
+    $ columns = 2;
+    $ rows = 4;
+    frame:
+        left_margin 0.7
+        bottom_margin 0.1
+
+        # Display a grid of body items
+        grid columns rows:
+            xfill True
+            style_group "body"
+
+            # Display ten clothing articles.
+            for i in range(0, columns * rows):
+
+                # Each file slot is a button.
+                if i < count:
+                    null
+                    #imagebutton:
+                    #    idle type + ' ' + items[i] + ' ' +  "thumbs"
+                    #    hover type + ' ' + items[i] + ' ' +  "thumbs"
+                    #    action Return((type,(items[i],)))
+                    #    xfill True
+                else:
+                    null
 
 ##############################################################################
 # Say
@@ -230,6 +286,7 @@ screen main_menu():
     window:
         style "mm_root"
 
+    add "images/title.png" zoom 0.5
     # The main menu buttons.
     frame:
         style_group "mm"
@@ -239,9 +296,9 @@ screen main_menu():
         has vbox
 
         textbutton _("Start Game") action Start()
-        textbutton _("Load Game") action ShowMenu("load")
-        textbutton _("Preferences") action ShowMenu("preferences")
-        textbutton _("Help") action Help()
+        #textbutton _("Load Game") action ShowMenu("load")
+        #textbutton _("Preferences") action ShowMenu("preferences")
+        #textbutton _("Help") action Help()
         textbutton _("Quit") action Quit(confirm=False)
 
 init -2:

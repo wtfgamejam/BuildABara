@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 109: invalid syntax
-    renpy.show((slot,*item), (halfsize,))
-                      ^
+File "game/script.rpy", line 192: invalid syntax
+    renpy.notify currentGary['skin']
+                            ^
     
 
 Ren'Py Version: Ren'Py 6.99.3.404
