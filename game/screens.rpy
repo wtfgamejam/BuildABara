@@ -44,7 +44,9 @@ screen dressup():
                 null
         
     use datego
+    use randomgary
     on "hide" action Hide("clothing")
+    on "hide" action Hide("body")
 
 screen datego():
     frame:
@@ -52,6 +54,18 @@ screen datego():
         yalign .98
     
         textbutton _("Go On Date!") action Return("date")
+
+screen randomgary():
+    frame:
+        xalign .02
+        yalign .02
+        
+        textbutton _("Random Outfit") action Return("randomoutfit")
+    frame:
+        xalign .98
+        yalign .02
+        
+        textbutton _("Random Bara") action Return("randomgary")
 
 screen clothing(type):
     $ items = clothes[type]
@@ -61,6 +75,7 @@ screen clothing(type):
     frame:
         right_margin 0.7
         bottom_margin 0.1
+        top_margin 0.1
 
         # Display a grid of clothing items
         grid columns rows:
@@ -72,11 +87,20 @@ screen clothing(type):
 
                 # Each file slot is a button.
                 if i < count:
-                    imagebutton:
-                        idle type + ' ' + items[i] + ' ' +  "thumbs"
-                        hover type + ' ' + items[i] + ' ' +  "thumbs"
-                        action Return((type,items[i]))
-                        xfill True
+                    python:
+                        imagename = " ".join((type,items[i],"thumbs"))
+                        if not items[i] == 'blank':
+                            ui.imagebutton(imagename, 
+                                imagename, 
+                                clicked=ui.returns((type,items[i])))
+                        else:
+                            ui.textbutton(items[i],clicked=ui.returns((type,items[i])))
+                            #imagebutton:
+                            #    idle type + ' ' + items[i] + ' ' +  "thumbs"
+                            #    hover type + ' ' + items[i] + ' ' +  "thumbs"
+                            #    action Return((type,items[i]))
+                            #    xfill True
+                        
                 else:
                     null
 
@@ -84,22 +108,26 @@ screen body(type):
     $ items = body[type]
     $ count = len(body[type])
     $ columns = 2;
-    $ rows = 4;
+    $ rows = 8;
     frame:
         left_margin 0.7
         bottom_margin 0.1
+        top_margin 0.1
 
         # Display a grid of body items
         grid columns rows:
             xfill True
             style_group "body"
 
-            # Display ten clothing articles.
+            # Display ten body options.
             for i in range(0, columns * rows):
 
                 # Each file slot is a button.
                 if i < count:
-                    null
+                    textbutton _(items[i]):
+                        xfill True
+                        text_size 12
+                        action Return((type,items[i]))
                     #imagebutton:
                     #    idle type + ' ' + items[i] + ' ' +  "thumbs"
                     #    hover type + ' ' + items[i] + ' ' +  "thumbs"
@@ -318,8 +346,8 @@ init -2:
 screen navigation():
 
     # The background of the game menu.
-    window:
-        style "gm_root"
+    #window:
+        #style "gm_root"
 
     # The various buttons.
     frame:
@@ -331,10 +359,10 @@ screen navigation():
 
         textbutton _("Return") action Return()
         textbutton _("Preferences") action ShowMenu("preferences")
-        textbutton _("Save Game") action ShowMenu("save")
-        textbutton _("Load Game") action ShowMenu("load")
+        #textbutton _("Save Game") action ShowMenu("save")
+        #textbutton _("Load Game") action ShowMenu("load")
         textbutton _("Main Menu") action MainMenu()
-        textbutton _("Help") action Help()
+        #textbutton _("Help") action Help()
         textbutton _("Quit") action Quit()
 
 init -2:
@@ -370,8 +398,8 @@ screen file_picker():
             textbutton _("Previous"):
                 action FilePagePrevious()
 
-            textbutton _("Auto"):
-                action FilePage("auto")
+            #textbutton _("Auto"):
+            #    action FilePage("auto")
 
             textbutton _("Quick"):
                 action FilePage("quick")
@@ -414,21 +442,21 @@ screen file_picker():
                     key "save_delete" action FileDelete(i)
 
 
-screen save():
+#screen save():
 
     # This ensures that any other menu screen is replaced.
-    tag menu
+    #tag menu
 
-    use navigation
-    use file_picker
+    #use navigation
+    #use file_picker
 
-screen load():
+#screen load():
 
     # This ensures that any other menu screen is replaced.
-    tag menu
+    #tag menu
 
-    use navigation
-    use file_picker
+    #use navigation
+    #use file_picker
 
 init -2:
     style file_picker_frame is menu_frame
@@ -640,12 +668,12 @@ screen quick_menu():
         yalign 1.0
 
         textbutton _("Back") action Rollback()
-        textbutton _("Save") action ShowMenu('save')
-        textbutton _("Q.Save") action QuickSave()
-        textbutton _("Q.Load") action QuickLoad()
+        #textbutton _("Save") action ShowMenu('save')
+        #textbutton _("Q.Save") action QuickSave()
+        #textbutton _("Q.Load") action QuickLoad()
         textbutton _("Skip") action Skip()
         textbutton _("F.Skip") action Skip(fast=True, confirm=True)
-        textbutton _("Auto") action Preference("auto-forward", "toggle")
+        #textbutton _("Auto") action Preference("auto-forward", "toggle")
         textbutton _("Prefs") action ShowMenu('preferences')
 
 init -2:

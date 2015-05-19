@@ -97,7 +97,7 @@ init -1 python hide:
     ## are the size of the left/right and top/bottom borders,
     ## respectively.
 
-    style.window.background = "#fff6"
+    style.window.background = "#0006"
 
     ## Margin is space surrounding the window, where the background
     ## is not drawn.
@@ -162,7 +162,7 @@ init -1 python hide:
 
     ## Set this to False if the game does not have any sound effects.
 
-    config.has_sound = True
+    config.has_sound = False
 
     ## Set this to False if the game does not have any music.
 
@@ -188,7 +188,7 @@ init -1 python hide:
 
     ## Music that is played while the user is at the main menu.
 
-    # config.main_menu_music = "main_menu_theme.ogg"
+    config.main_menu_music = "music/buildabara-menu.mp3"
 
 
     #########################################
@@ -288,4 +288,7 @@ init -1 python hide:
     #########################################
     ## More customizations can go here.
  
-    config.layers = [ 'master', 'body', 'underclothes', 'overclothes', 'accessories', 'transient', 'screens', 'overlay' ]
+    config.layers = [ 'master', 'transient', 'screens', 'overlay' ]
+    config.autosave_frequency = None
+    config.has_autosave = False
+    config.has_quicksave = False

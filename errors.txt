@@ -2,9 +2,8 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 192: invalid syntax
-    renpy.notify currentGary['skin']
-                            ^
-    
+File "game/screens.rpy", line 349: window expects a non-empty block.
+    window:
+           ^
 
 Ren'Py Version: Ren'Py 6.99.3.404
